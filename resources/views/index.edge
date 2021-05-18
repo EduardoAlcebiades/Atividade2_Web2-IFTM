@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Roboto:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
+
+  <script src="clients.js"></script>
+  <script src="phones.js"></script>
+
+  <title>Clientes</title>
+  
+  {{ style('style') }}
+</head>
+<body>
+  <div id="root">
+    <fieldset class="container">
+      <legend>Clientes</legend>
+
+      <form id="form-cliente" onsubmit="onSubmit(event)">
+        <div class="form-group">
+          <label for="id">ID</label>
+          <input
+            class="form-control small"
+            type="text"
+            name="id"
+            id="id"
+            readonly
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input
+            class="form-control"
+            type="text"
+            name="name"
+            id="name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input
+            class="form-control"
+            type="text"
+            name="email"
+            id="email"
+            required
+          />
+        </div>
+
+        <div class="button-group">
+          <button class="btn btn-success" type="submit">Salvar</button>
+          <button class="btn btn-warning" type="reset">Limpar</button>
+        </div>
+      </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th class="small"></th>
+            <th class="small"></th>
+            <th class="small"></th>
+          </tr>
+        </thead>
+
+        <tbody id="table-body"></tbody>
+      </table>
+    </fieldset>
+  </div>
+
+  <div class="modal fade" id="phoneModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Telefones</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input id="client-id" type="number" hidden />
+
+          <form id="form-phone" onsubmit="onPhoneSubmit(event)">
+            <div class="form-group">
+              <label for="id">ID</label>
+              <input 
+                class="form-control small"
+                name="id"
+                id="phone-id"
+                type="number" 
+                readonly
+              />
+            </div>
+
+            <div class="form-group large">
+              <label for="number">Número</label>
+              <input
+                class="form-control masked"
+                type="text"
+                name="number"
+                id="phone-number"
+                placeholder="(__) ____-____"
+                autocomplete="off"
+                required
+              />
+            </div>
+            <div class="button-group">
+              <button class="btn btn-success" type="submit">Salvar</button>
+              <button class="btn btn-warning" type="reset">Limpar</button>
+            </div>
+          </form>
+
+          <hr>
+
+          <table class="phonesContent">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Número</th>
+                <th>Preferencial</th>
+                <th class="small"></th>
+                <th class="small"></th>
+              </tr>
+            </thead>
+    
+            <tbody id="table-body-phones"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
